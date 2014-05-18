@@ -1,0 +1,12 @@
+.classpath
+.project
+*.DS_Store
+.classpath
+.settings/
+*.iml
+*.ipr
+target/
+lib
+src/it
+*.releaseBackup
+release.properties
