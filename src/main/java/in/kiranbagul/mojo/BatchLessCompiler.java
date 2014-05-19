@@ -12,7 +12,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * @requiresProject false
  */
-@Mojo(name = "batchLess2CssCompiler",defaultPhase = LifecyclePhase.COMPILE)
+@Mojo(name = "compile", defaultPhase = LifecyclePhase.COMPILE)
 public class BatchLessCompiler extends AbstractMojo {
 	/**
 	 * Input folder path
@@ -24,19 +24,19 @@ public class BatchLessCompiler extends AbstractMojo {
 	 * Include file filter
 	 */
 	@Parameter(defaultValue = ".less", property = "include")
-	private static String includes;
+	private static String include;
 	
 	/**
 	 * Exclude file filter
 	 */
 	@Parameter(defaultValue = "", property = "exclude")
-	private static String excludes;
+	private static String exclude;
 	
 	/**
 	 * Compile only if source changed
 	 */
 	@Parameter(defaultValue = "true", property = "force")
-	private static boolean forceOverwrite;
+	private static boolean force;
 	
 	/**
 	 * No of threads to be spawned
@@ -47,8 +47,8 @@ public class BatchLessCompiler extends AbstractMojo {
 	/**
 	 * Generated output filename extension pattern
 	 */
-	@Parameter(defaultValue = ".gen.css", property = "outputas")
-	private static String outputas;
+	@Parameter(defaultValue = ".gen.css", property = "outputAs")
+	private static String outputAs;
 	
 	/**
 	 * Compress generated CSS
@@ -70,17 +70,17 @@ public class BatchLessCompiler extends AbstractMojo {
 
 	public void execute() throws MojoExecutionException {
 		CompilerEnv.setInputFilesPath(path);
-		CompilerEnv.setIncludes(includes);
+		CompilerEnv.setIncludes(include);
 		CompilerEnv.setNoOfThreads(noOfThreads);
-		CompilerEnv.setOutputas(outputas);
+		CompilerEnv.setOutputas(outputAs);
 		CompilerEnv.setCompress(compress);
 		CompilerEnv.setFailOnError(failOnError);
-		CompilerEnv.setForceOverwrite(forceOverwrite);
+		CompilerEnv.setForceOverwrite(force);
 		if(null != mapFolder){
 			CompilerEnv.setFolderMap(mapFolder);
 		}
-		if(null != excludes){
-			CompilerEnv.setExcludes(excludes);
+		if(null != exclude){
+			CompilerEnv.setExcludes(exclude);
 		}
 		new ConcurrentLessCompiler().start();
 	}

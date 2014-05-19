@@ -46,6 +46,16 @@
 			<groupId>in.kiranbagul</groupId>
 			<artifactId>batchless2css</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.lesscss</groupId>
+					<artifactId>org.lesscss</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>args4j</artifactId>
+					<groupId>args4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
